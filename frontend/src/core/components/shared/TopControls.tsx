@@ -186,7 +186,7 @@ const TopControls = ({
   ), [currentView, switchingTo, activeFiles, currentFileIndex, onFileSelect, onFileRemove, pageEditorState, customViews]);
 
   return (
-    <div className="absolute left-0 w-full top-0 z-[100] pointer-events-none">
+    <div className="flex-shrink-0 w-full">
       <div className="flex justify-center">
 
         <SegmentedControl
@@ -201,7 +201,6 @@ const TopControls = ({
           style={{
             transition: 'all 0.2s ease',
             opacity: switchingTo ? 0.8 : 1,
-            pointerEvents: 'auto'
           }}
           styles={{
             root: {
