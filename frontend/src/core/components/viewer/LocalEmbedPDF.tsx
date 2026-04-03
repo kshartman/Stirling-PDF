@@ -122,9 +122,9 @@ export function LocalEmbedPDF({ file, url, fileName, enableAnnotations = false, 
   const plugins = useMemo(() => {
     if (!pdfUrl) return [];
 
-    // Calculate 3.5rem in pixels dynamically based on root font size
+    // Small gap between top of viewport and first page
     const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
-    const viewportGap = rootFontSize * 3.5;
+    const viewportGap = rootFontSize * 0.5;
 
     // Determine export filename - use provided fileName, or extract from file/url
     let exportFileName = 'document.pdf';
