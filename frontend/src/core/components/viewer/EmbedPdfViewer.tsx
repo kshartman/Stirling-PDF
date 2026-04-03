@@ -1086,27 +1086,20 @@ const EmbedPdfViewerContent = ({
         </>
       )}
 
-      {/* Bottom Toolbar Overlay */}
+      {/* Bottom Toolbar */}
       {effectiveFile && (
         <div
           style={{
-            position: "fixed",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            zIndex: 50,
+            flexShrink: 0,
             display: "flex",
             justifyContent: "center",
-            pointerEvents: "none",
             background: "transparent",
           }}
         >
-          <div style={{ pointerEvents: "auto" }}>
-            <PdfViewerToolbar
-              currentPage={scrollState.currentPage}
-              totalPages={scrollState.totalPages}
-            />
-          </div>
+          <PdfViewerToolbar
+            currentPage={scrollState.currentPage}
+            totalPages={scrollState.totalPages}
+          />
         </div>
       )}
 
