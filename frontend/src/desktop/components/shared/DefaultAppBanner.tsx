@@ -3,12 +3,15 @@ import { useTranslation } from 'react-i18next';
 import { InfoBanner } from '@app/components/shared/InfoBanner';
 import { useDefaultApp } from '@app/hooks/useDefaultApp';
 
+const DISMISSED_KEY = 'stirlingpdf_default_app_banner_dismissed';
+
 export const DefaultAppBanner: React.FC = () => {
   const { t } = useTranslation();
   const { isDefault, isLoading, handleSetDefault } = useDefaultApp();
-  const [dismissed, setDismissed] = useState(false);
+  const [dismissed, setDismissed] = useState(() => localStorage.getItem(DISMISSED_KEY) === 'true');
 
   const handleDismissPrompt = () => {
+    localStorage.setItem(DISMISSED_KEY, 'true');
     setDismissed(true);
   };
 
