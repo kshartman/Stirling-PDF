@@ -12,6 +12,9 @@ import ViewWeekIcon from '@mui/icons-material/ViewWeek';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import WbTwilightIcon from '@mui/icons-material/WbTwilight';
+import FitScreenIcon from '@mui/icons-material/FitScreen';
+import WidthFullIcon from '@mui/icons-material/WidthFull';
+import { ZoomMode } from '@embedpdf/plugin-zoom/react';
 
 interface PdfViewerToolbarProps {
   // Page navigation props (placeholders for now)
@@ -85,6 +88,14 @@ export function PdfViewerToolbar({
     zoomActions.zoomIn();
   };
 
+  const handleFitWidth = () => {
+    zoomActions.requestZoom(ZoomMode.FitWidth, { vx: 0.5, vy: 0 });
+  };
+
+  const handleFitPage = () => {
+    zoomActions.requestZoom(ZoomMode.FitPage, { vx: 0.5, vy: 0.5 });
+  };
+
   const handlePageNavigation = (page: number) => {
     scrollActions.scrollToPage(page);
     if (onPageChange) {
@@ -130,7 +141,6 @@ export function PdfViewerToolbar({
           borderBottomLeftRadius: 0,
           borderBottomRightRadius: 0,
           boxShadow: "0 -2px 8px rgba(0,0,0,0.04)",
-          pointerEvents: "auto",
           minWidth: '30rem',
         }}
       >
@@ -274,6 +284,34 @@ export function PdfViewerToolbar({
 
         {/* Zoom Controls */}
         <Group gap={4} align="center" style={{ marginLeft: 16 }}>
+          <Tooltip content={t("viewer.fitWidth", "Fit Width")} position="top" arrow>
+            <Button
+              variant="subtle"
+              color="blue"
+              size="md"
+              px={8}
+              radius="xl"
+              onClick={handleFitWidth}
+              style={{ minWidth: '2.5rem' }}
+              aria-label={t("viewer.fitWidth", "Fit Width")}
+            >
+              <WidthFullIcon fontSize="small" />
+            </Button>
+          </Tooltip>
+          <Tooltip content={t("viewer.fitPage", "Fit Page")} position="top" arrow>
+            <Button
+              variant="subtle"
+              color="blue"
+              size="md"
+              px={8}
+              radius="xl"
+              onClick={handleFitPage}
+              style={{ minWidth: '2.5rem' }}
+              aria-label={t("viewer.fitPage", "Fit Page")}
+            >
+              <FitScreenIcon fontSize="small" />
+            </Button>
+          </Tooltip>
           <Button
             variant="subtle"
             color="blue"
@@ -299,7 +337,6 @@ export function PdfViewerToolbar({
           >
             +
           </Button>
-
         </Group>
       </Paper>
   );
